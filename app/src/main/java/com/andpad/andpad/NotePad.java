@@ -1,7 +1,9 @@
 package com.andpad.andpad;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class NotePad extends AppCompatActivity {
@@ -12,6 +14,12 @@ public class NotePad extends AppCompatActivity {
         setContentView(R.layout.activity_note_pad);
 
         TextView tv = (TextView) findViewById(R.id.Title);
-        tv.setText("Yes");
+        String str = getIntent().getExtras().getString("Title");
+
+
+        RelativeLayout rl = (RelativeLayout) findViewById(R.id.activity_note_pad);
+        rl.setBackgroundColor(Color.parseColor("#ffff66"));
+
+        tv.setText(str);
     }
 }

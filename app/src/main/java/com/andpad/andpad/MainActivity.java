@@ -16,6 +16,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeView(View view) {
         Intent intent =  new Intent(this, NotePad.class);
+        intent.putExtra("Title", "Inside");
+        startActivity(intent);
+    }
+
+    public void listView(View view) {
+        Intent intent = new Intent(this, ListViewAndroidExampleActivity.class);
+
         startActivity(intent);
     }
 }
