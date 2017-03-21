@@ -16,9 +16,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Title"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:textSize="60px"
-        />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/Title"
+        android:gravity="top"
+        android:editable="true" />
 
 </RelativeLayout>

@@ -76,6 +76,8 @@ public class ColorPickerDialog extends Dialog {
                         CENTER_RADIUS + mCenterPaint.getStrokeWidth(),
                         mCenterPaint);
 
+
+
                 mCenterPaint.setStyle(Paint.Style.FILL);
                 mCenterPaint.setColor(c);
             }
@@ -86,9 +88,9 @@ public class ColorPickerDialog extends Dialog {
             setMeasuredDimension(CENTER_X*2, CENTER_Y*2);
         }
 
-        private static final int CENTER_X = 100;
-        private static final int CENTER_Y = 100;
-        private static final int CENTER_RADIUS = 32;
+        private static final int CENTER_X = 200;
+        private static final int CENTER_Y = 200;
+        private static final int CENTER_RADIUS = 128;
 
         private int floatToByte(float x) {
             int n = java.lang.Math.round(x);
