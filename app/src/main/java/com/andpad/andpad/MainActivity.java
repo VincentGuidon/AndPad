@@ -8,16 +8,35 @@ import android.preference.PreferenceFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
-public class MainActivity extends AppCompatActivity implements ColorPickerDialog.OnColorChangedListener {
+import java.sql.Time;
+
+public class MainActivity extends AppCompatActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.logo_activity);
+
+
+        try {
+            new Time(new Long(42)).wait(2500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        startActivity(new Intent(this, NotePadActivity.class));
+        this.finish();
     }
+
+
+
+    /*
+    implements ColorPickerDialog.OnColorChangedListener
 
     public void changeView(View v)
     {
@@ -28,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
         int colorId = viewColor.getColor();
 
         new ColorPickerDialog(MainActivity.this, MainActivity.this, colorId).show();
-    }
+    }*/
   /*  public void changeView(View view) {
         Intent intent =  new Intent(this, NotePad.class);
         intent.putExtra("Title", "Inside");
@@ -36,16 +55,10 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
 
         new ColorPickerDialog(FingerPaintActivity.this, FingerPaintActivity.this, mPaint.getColor()).show();
     }*/
-
-    public void listView(View view) {
-        Intent intent = new Intent(this, ListViewAndroidExampleActivity.class);
-
-        startActivity(intent);
-    }
-
+/*
     @Override
     public void colorChanged(int color) {
         RelativeLayout rl = (RelativeLayout) findViewById(R.id.activity_main);
         rl.setBackgroundColor(color);
-    }
+    }*/
 }
