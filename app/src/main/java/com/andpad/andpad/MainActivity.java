@@ -18,17 +18,11 @@ public class MainActivity extends AppCompatActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.logo_activity);
-
-
-        try {
-            new Time(new Long(42)).wait(2500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
+        
         startActivity(new Intent(this, NotePadActivity.class));
         this.finish();
     }
