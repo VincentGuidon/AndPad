@@ -6,7 +6,7 @@
     android:layout_marginLeft="15dp"
     android:layout_marginRight="15dp"
     android:weightSum="100">
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="15"
@@ -14,12 +14,13 @@
         android:text="TITLE"
         android:textStyle="bold"
         android:textSize="20dp"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:id="@+id/TexxtViewTitle"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="70">
-        <TextView
+        <EditText
             android:background="#07070707"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida gravida massa, non placerat risus molestie sed. Donec nec metus sapien. In pretium nulla justo, id varius dui efficitur ac. Vestibulum semper justo eget lectus mollis, quis maximus ipsum consequat. Suspendisse in justo ex. Duis porta sapien arcu. Quisque suscipit tempus arcu a posuere. Sed eget mi ut nisl tincidunt ullamcorper id sed dolor. Fusce id hendrerit justo. Aliquam convallis lectus lectus, a vehicula augue pharetra eu. Vestibulum ligula nunc, laoreet nec orci sit amet, egestas sagittis eros.
 
@@ -62,7 +63,8 @@ Sed rutrum nunc sed augue tincidunt, id eleifend quam elementum. Fusce aliquet f
             <Button
                 android:id="@+id/ButtonColorPicker"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="Color" />
         </LinearLayout>
 
     </LinearLayout>

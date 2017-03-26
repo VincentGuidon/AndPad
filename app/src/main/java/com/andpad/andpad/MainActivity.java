@@ -1,18 +1,9 @@
 package com.andpad.andpad;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.preference.PreferenceFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
-import android.widget.Button;
-import android.widget.RelativeLayout;
-
-import java.sql.Time;
 
 public class MainActivity extends AppCompatActivity  {
 
@@ -22,9 +13,9 @@ public class MainActivity extends AppCompatActivity  {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.logo_activity);
-        
-        startActivity(new Intent(this, NotePadActivity.class));
-        this.finish();
+
+        startActivity(new Intent(this, NotePadList.class));
+       this.finish();
     }
 
 

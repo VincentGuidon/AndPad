@@ -15,6 +15,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="com.andpad.andpad.NotePadList"
+            android:label="List of Note"
+            />
+        <activity
             android:name="com.andpad.andpad.NotePadActivity"
             android:label="NotePad"
             />
