@@ -36,6 +36,10 @@ public class NotePadList extends AppCompatActivity {
         ListContainer tmp2 = new ListContainer();
         ListContainer tmp3 = new ListContainer();
         ListContainer tmp4 = new ListContainer();
+        ListContainer tmp5 = new ListContainer();
+        ListContainer tmp6 = new ListContainer();
+        ListContainer tmp7 = new ListContainer();
+
 
         //debug
         tmp.Title = "Oui 1";
@@ -65,6 +69,21 @@ public class NotePadList extends AppCompatActivity {
         tmp4.Content = "Music";
         tmp4.Date = "Music";
         list.add(tmp4);
+        tmp5.Title = "Music";
+        tmp5.Content = "Music";
+        tmp5.Date = "Music";
+        list.add(tmp5);
+        tmp6.Title = "Music";
+        tmp6.Content = "Music";
+        tmp6.Date = "Music";
+        list.add(tmp6);
+        tmp7.Title = "Music";
+        tmp7.Content = "Music";
+        tmp7.Date = "Music";
+        list.add(tmp7);
+
+
+
         //!debug
 
 

@@ -17,33 +17,4 @@ public class MainActivity extends AppCompatActivity  {
         startActivity(new Intent(this, NotePadList.class));
        this.finish();
     }
-
-
-
-    /*
-    implements ColorPickerDialog.OnColorChangedListener
-
-    public void changeView(View v)
-    {
-        RelativeLayout rl = (RelativeLayout) findViewById(R.id.activity_main);
-        Drawable background = v.getBackground();
-
-        ColorDrawable viewColor = (ColorDrawable) rl.getBackground();
-        int colorId = viewColor.getColor();
-
-        new ColorPickerDialog(MainActivity.this, MainActivity.this, colorId).show();
-    }*/
-  /*  public void changeView(View view) {
-        Intent intent =  new Intent(this, NotePad.class);
-        intent.putExtra("Title", "Inside");
-        startActivity(intent);
-
-        new ColorPickerDialog(FingerPaintActivity.this, FingerPaintActivity.this, mPaint.getColor()).show();
-    }*/
-/*
-    @Override
-    public void colorChanged(int color) {
-        RelativeLayout rl = (RelativeLayout) findViewById(R.id.activity_main);
-        rl.setBackgroundColor(color);
-    }*/
 }

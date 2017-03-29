@@ -48,10 +48,13 @@ public class ListViewAdapter extends ArrayAdapter<ListContainer> {
         TextView Content = (TextView) view.findViewById(R.id.ListTextContent);
         TextView Date = (TextView) view.findViewById(R.id.ListTextDate);
 
-        Title.setText(String.valueOf(container.Title));
+       /* Title.setText(String.valueOf(container.Title));
         Content.setText(String.valueOf(container.Content));
-        Date.setText(String.valueOf(container.Date));
+        Date.setText(String.valueOf(container.Date));*/
+        Title.setText(list.get(position).Title);
 
+        Content.setText(list.get(position).Content);
+        Date.setText(list.get(position).Date);
 
         return (view);
     }

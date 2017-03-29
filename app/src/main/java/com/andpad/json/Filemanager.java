@@ -1,4 +1,4 @@
-/**
+package com.andpad.json; /**
  * Created by Neilug on 21/03/2017.
  */
 
