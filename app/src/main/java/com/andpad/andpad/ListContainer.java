@@ -5,7 +5,8 @@ package com.andpad.andpad;
  */
 
 public class ListContainer {
-    public String Title;
-    public String Date;
-    public String Content;
+    public String   Title;
+    public String   Content;
+    public String   Date;
+    public int      Color;
 }

@@ -19,7 +19,7 @@ import static android.R.attr.value;
 
 public class NotePadList extends AppCompatActivity {
 
-    List<ListContainer> list;
+    ListNote list = ListNote.getInstance();
     ListView listView;
 
     @Override
@@ -28,8 +28,11 @@ public class NotePadList extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main_activity);
 
-        list = new ArrayList<ListContainer>();
+        list.setUp(getApplicationContext());
 
+
+  /*
+        --debug
 
         ListContainer tmp = new ListContainer();
         ListContainer tmp1 = new ListContainer();
@@ -41,7 +44,6 @@ public class NotePadList extends AppCompatActivity {
         ListContainer tmp7 = new ListContainer();
 
 
-        //debug
         tmp.Title = "Oui 1";
         tmp.Date = "23/07/1992";
         tmp.Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida gravida massa, non placerat risus molestie sed. Donec nec metus sapien. In pretium nulla justo, id varius dui efficitur ac. Vestibulum semper justo eget lectus mollis, quis maximus ipsum consequat. Suspendisse in justo ex. Duis porta sapien arcu. Quisque suscipit tempus arcu a posuere. Sed eget mi ut nisl tincidunt ullamcorper id sed dolor. Fusce id hendrerit justo. Aliquam convallis lectus lectus, a vehicula augue pharetra eu. Vestibulum ligula nunc, laoreet nec orci sit amet, egestas sagittis eros.\n" +
@@ -82,13 +84,13 @@ public class NotePadList extends AppCompatActivity {
         tmp7.Date = "Music";
         list.add(tmp7);
 
-
+*/
 
         //!debug
 
 
 
-        ListViewAdapter adapter = new ListViewAdapter(this, R.layout.infalter_notepad, list);
+        ListViewAdapter adapter = new ListViewAdapter(this, R.layout.infalter_notepad, list.allNotes.noteList);
         listView = (ListView) findViewById(R.id.ListViewMain);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -101,9 +103,18 @@ public class NotePadList extends AppCompatActivity {
                 String Content = ((TextView) view.findViewById(R.id.ListTextContent)).getText().toString();
                 String Date = ((TextView) view.findViewById(R.id.ListTextDate)).getText().toString();
 
-                intent.putExtra("Title", Title);
+             /*   intent.putExtra("Title", Title);
                 intent.putExtra("Content", Content);
                 intent.putExtra("Date", Date);
+                intent.putExtra("Background", )*/
+
+                ListContainer container = list.allNotes.noteList.get(position);
+
+                intent.putExtra("Title", container.Title);
+                intent.putExtra("Content", container.Content);
+                intent.putExtra("Date", container.Date);
+                intent.putExtra("Background", container.Color);
+                intent.putExtra("Position", position);
 
                 startActivity(intent);
             }

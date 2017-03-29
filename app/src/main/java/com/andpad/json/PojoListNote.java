@@ -1,5 +1,9 @@
 package com.andpad.json;
 
+import com.andpad.andpad.ListContainer;
+
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -8,7 +12,13 @@ import java.util.List;
 
 public class PojoListNote {
 
-    public String  Name;
+ /*   public String  Name;
     public int     beau;
-    public List    list;
+    public List    list;*/
+    public List<ListContainer> noteList;
+
+    public PojoListNote () {
+        noteList = new ArrayList<ListContainer>();
+    }
+
 }

@@ -27,17 +27,18 @@ public class JsonHandle {
 
     JsonHandle() {}
 
-    public static void writeFile(Context context)
+    public static void writeFile(Context context, PojoListNote listNote)
     {
-        PojoListNote listNote = new PojoListNote();
-        listNote.Name = "Vincent";
+      /*  listNote.Name = "Vincent";
         listNote.beau = 14;
 
         List listName = new ArrayList();
         listName.add("Madhya Pradesh");
         listName.add("Maharastra");
         listName.add("Rajasthan");
-        listNote.list = listName;
+        listNote.list = listName;*/
+
+
 
         Gson gson = new Gson();
         String json = gson.toJson(listNote);
