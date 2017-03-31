@@ -47,4 +47,15 @@
         android:layout_weight="85"
         android:id="@+id/ListViewMain"/>
 
+    <Button
+        android:layout_width="52dp"
+        android:layout_height="28dp"
+        android:id="@+id/addNote"
+        android:background="@mipmap/ic_addnote"
+        android:elevation="4dp"
+        android:gravity="left|center_vertical|center_horizontal"
+        android:layout_weight="15.01"
+        android:layout_gravity="right"
+        android:onClick="addNote"/>
+
 </LinearLayout>

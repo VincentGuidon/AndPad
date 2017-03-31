@@ -10,23 +10,21 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Vincent on 29/03/2017.
  */
-public class ListNote {
-    private static ListNote ourInstance = new ListNote();
+public class WrapperListNote {
+    private static WrapperListNote ourInstance = new WrapperListNote();
 
-    public static ListNote getInstance() {
+    public static WrapperListNote getInstance() {
         return ourInstance;
     }
 
-    PojoListNote allNotes;
+    PojoListNote wrapperListNote;
 
-    private ListNote() {
-        allNotes = new PojoListNote();
+    private WrapperListNote() {
+        wrapperListNote = new PojoListNote();
     }
 
     public void setUp(Context context)
@@ -42,14 +40,14 @@ public class ListNote {
             }
 
             Gson gson = new Gson();
-            allNotes = gson.fromJson(stringBuffer.toString(), PojoListNote.class);
+            wrapperListNote = gson.fromJson(stringBuffer.toString(), PojoListNote.class);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-                allNotes = null;
+                wrapperListNote = null;
         } catch (IOException e) {
             e.printStackTrace();
-            allNotes = null;
+            wrapperListNote = null;
         }
     }
 }
