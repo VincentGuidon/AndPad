@@ -29,17 +29,6 @@ public class JsonHandle {
 
     public static void writeFile(Context context, PojoListNote listNote)
     {
-      /*  listNote.Name = "Vincent";
-        listNote.beau = 14;
-
-        List listName = new ArrayList();
-        listName.add("Madhya Pradesh");
-        listName.add("Maharastra");
-        listName.add("Rajasthan");
-        listNote.list = listName;*/
-
-
-
         Gson gson = new Gson();
         String json = gson.toJson(listNote);
 
@@ -49,10 +38,7 @@ public class JsonHandle {
             fileOutputStream.write(json.getBytes());
             fileOutputStream.close();
             Toast.makeText(context, "Note save", Toast.LENGTH_SHORT).show();
-            /*FileWriter writer = new FileWriter("Note.json");
-            writer.write(json);
-            writer.close();
-*/
+
         } catch (java.io.IOException e) {
             Toast.makeText(context, "An error Occurs, The note has not been save", Toast.LENGTH_SHORT).show();
             e.printStackTrace();

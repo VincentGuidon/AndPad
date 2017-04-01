@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.andpad.json.JsonHandle;
 import com.andpad.json.PojoListNote;
@@ -84,18 +85,29 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
         listNote.noteList.add(container);
         listNote.noteList.add(position, container);
 
-        JsonHandle.writeFile(getApplicationContext(), listNote);
+        WrapperListNote.getInstance().writeFile(getApplicationContext());
+        Toast.makeText(getApplicationContext(), "Note saved", Toast.LENGTH_SHORT).show();
     }
 
-    public void readNote(View view) {
+    public void deleteNote(View view)
+    {
+        listNote.noteList.remove(position);
+        WrapperListNote.getInstance().writeFile(getApplicationContext());
+        Toast.makeText(getApplicationContext(), "Note deleted", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, NotePadList.class);
+        startActivity(intent);
+        this.finish();
+    }
+
+/*    public void readNote(View view) {
         PojoListNote allNotes = JsonHandle.readFile(getApplicationContext());
         if (allNotes == null)
         {
-            textViewContent.setText("No note save!");
+            textViewContent.setText("No note saved!");
         }
         else
         {
             textViewContent.setText(allNotes.noteList.get(0).Content);
         }
-    }
+    }*/
 }

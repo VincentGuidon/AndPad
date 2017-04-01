@@ -21,7 +21,12 @@ public class NotePadList extends AppCompatActivity {
         setContentView(R.layout.main_activity);
 
         list.setUp(getApplicationContext());
+    }
 
+    @Override
+    public void onResume()
+    {
+        super.onResume();
         ListViewAdapter adapter = new ListViewAdapter(this, R.layout.infalter_notepad, list.wrapperListNote.noteList);
         listView = (ListView) findViewById(R.id.ListViewMain);
 
@@ -30,15 +35,13 @@ public class NotePadList extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
                 Intent intent = new Intent(parent.getContext(), NotePadActivity.class);
-
-                ListContainer container = list.wrapperListNote.noteList.get(position);
                 intent.putExtra("Position", position);
-
                 startActivity(intent);
             }
         });
 
         listView.setAdapter(adapter);
+
     }
 
     public void addNote(View view) {
@@ -51,5 +54,6 @@ public class NotePadList extends AppCompatActivity {
         Intent intent = new Intent(view.getContext(), NotePadActivity.class);
         intent.putExtra("Position", position);
         startActivity(intent);
+        this.finish();
     }
 }
