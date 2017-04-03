@@ -39,12 +39,14 @@ Sed rutrum nunc sed augue tincidunt, id eleifend quam elementum. Fusce aliquet f
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2.5"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10"
         android:orientation="horizontal"
         android:weightSum="2">
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -64,24 +66,43 @@ Sed rutrum nunc sed augue tincidunt, id eleifend quam elementum. Fusce aliquet f
             android:layout_height="match_parent"
             android:layout_weight="0.64"
             android:gravity="center_vertical">
+
             <Button
                 android:id="@+id/ButtonColorPicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Color"
-                android:onClick="changeColor"/>
+                android:onClick="changeColor"
+                android:minHeight="189dp"
+                android:minWidth="157dp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical">
+
             <Button
-                android:layout_width="137dp"
+                android:layout_width="96dp"
                 android:layout_height="wrap_content"
                 android:text="DeleteNote"
                 android:onClick="deleteNote"
                 android:id="@+id/Delete" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <Button
+                android:text="Share"
+                android:id="@+id/shareButton"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:onClick="shareFile"/>
         </LinearLayout>
     </LinearLayout>
 

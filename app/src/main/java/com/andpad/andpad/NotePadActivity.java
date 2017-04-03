@@ -99,6 +99,21 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
         this.finish();
     }
 
+    public void shareFile(View view) {
+        shareIt();
+    }
+
+    private void shareIt()
+    {
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        String shareBody = Content;
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, Title);
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+
+    }
+
 /*    public void readNote(View view) {
         PojoListNote allNotes = JsonHandle.readFile(getApplicationContext());
         if (allNotes == null)
