@@ -53,10 +53,10 @@ public class WrapperListNote {
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-                wrapperListNote = null;
+            wrapperListNote = new PojoListNote();
         } catch (IOException e) {
             e.printStackTrace();
-            wrapperListNote = null;
+            wrapperListNote = new PojoListNote();
         }
     }
 

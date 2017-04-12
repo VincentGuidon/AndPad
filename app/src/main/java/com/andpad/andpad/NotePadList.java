@@ -11,25 +11,27 @@ import android.widget.ListView;
 
 public class NotePadList extends AppCompatActivity {
 
-    WrapperListNote list = WrapperListNote.getInstance();
+    WrapperListNote list;
     ListView listView;
+    ListViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main_activity);
+        listView = (ListView) findViewById(R.id.ListViewMain);
 
+        list = WrapperListNote.getInstance();
         list.setUp(getApplicationContext());
+        adapter = new ListViewAdapter(this, R.layout.infalter_notepad, list.wrapperListNote.noteList);
+
     }
 
     @Override
     public void onResume()
     {
         super.onResume();
-        ListViewAdapter adapter = new ListViewAdapter(this, R.layout.infalter_notepad, list.wrapperListNote.noteList);
-        listView = (ListView) findViewById(R.id.ListViewMain);
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
@@ -54,6 +56,7 @@ public class NotePadList extends AppCompatActivity {
         Intent intent = new Intent(view.getContext(), NotePadActivity.class);
         intent.putExtra("Position", position);
         startActivity(intent);
-        this.finish();
+
+        adapter.clear();
     }
 }

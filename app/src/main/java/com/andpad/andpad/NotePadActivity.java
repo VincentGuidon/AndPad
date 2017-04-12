@@ -40,7 +40,15 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
         Intent intent = getIntent();
 
         listNote = WrapperListNote.getInstance().wrapperListNote;
-        position = intent.getIntExtra("Position", -1);
+        position = intent.getIntExtra("Position", 0);
+        if (position < 0)
+            position = 0;
+        if (listNote.noteList.size() == 0)
+        {
+            ListContainer container = new ListContainer();
+            listNote.noteList.add(container);
+            position = 0;
+        }
         Title = listNote.noteList.get(position).Title;
         Content = listNote.noteList.get(position).Content;
         Date = listNote.noteList.get(position).Date;
@@ -82,7 +90,6 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
         ColorDrawable viewColor = (ColorDrawable) ll.getBackground();
         container.Color = viewColor.getColor();
 
-        listNote.noteList.add(container);
         listNote.noteList.add(position, container);
 
         WrapperListNote.getInstance().writeFile(getApplicationContext());
@@ -94,6 +101,11 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
         listNote.noteList.remove(position);
         WrapperListNote.getInstance().writeFile(getApplicationContext());
         Toast.makeText(getApplicationContext(), "Note deleted", Toast.LENGTH_SHORT).show();
+        returnToList();
+    }
+
+    public void returnToList()
+    {
         Intent intent = new Intent(this, NotePadList.class);
         startActivity(intent);
         this.finish();
