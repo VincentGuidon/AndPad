@@ -36,8 +36,8 @@ public class ColorPickerDialog extends Dialog {
             super(c);
             mListener = l;
             mColors = new int[] {
-                    0xFFFF0000, 0xFFFF00FF, 0xFF0000FF, 0xFF00FFFF, 0xFF00FF00,
-                    0xFFFFFF00, 0xFFFF0000
+                    0xFFFF8888, 0xFFFF88FF, 0xFF8888FF, 0xFF88FFFF, 0xFF88FF88,
+                    0xFFFFFF88, 0xFFFF8888
             };
             Shader s = new SweepGradient(0, 0, mColors, null);
 
