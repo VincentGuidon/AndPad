@@ -3,8 +3,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="15dp"
-    android:layout_marginRight="15dp"
     android:weightSum="100"
     android:id="@+id/allActivityNotePad"
     android:background="@color/colorMainWhite">
@@ -19,6 +17,8 @@
         android:gravity="center"
         android:id="@+id/TextViewTitle"/>
     <ScrollView
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="70">

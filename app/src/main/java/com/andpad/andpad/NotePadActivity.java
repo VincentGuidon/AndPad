@@ -27,7 +27,7 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
     private String          Title;
     private String          Content;
     private String          Date;
-    private int             backGroundColor;
+    private int             backgroundColor;
     private EditText        textViewTitle;
     private EditText        textViewContent;
     private LinearLayout    ll;
@@ -52,7 +52,7 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
         Title = listNote.noteList.get(position).Title;
         Content = listNote.noteList.get(position).Content;
         Date = listNote.noteList.get(position).Date;
-        backGroundColor = listNote.noteList.get(position).Color;
+        backgroundColor = listNote.noteList.get(position).Color;
 
         setContentView(R.layout.notepad_activity);
 
@@ -62,7 +62,7 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
         ll = (LinearLayout) findViewById(R.id.allActivityNotePad);
         textViewTitle.setText(Title);
         textViewContent.setText(Content);
-        colorChanged(backGroundColor);
+        colorChanged(backgroundColor);
     }
 
     @Override
