@@ -4,7 +4,6 @@
 - Background Image
 
 List :
-- Superposer List et new Note
 - Remove le titre avec fond bleu
 
 Lancer application avec le logo
