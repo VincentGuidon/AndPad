@@ -9,22 +9,21 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="15"
         android:weightSum="100">
         <LinearLayout
             android:background="@color/colorMainWhite"
             android:layout_width="0dp"
-            android:layout_weight="30"
-            android:layout_height="match_parent"
+            android:layout_weight="29.95"
+            android:layout_height="wrap_content"
             android:gravity="end">
             <ImageView
-
                 android:layout_margin="10dp"
                 android:src="@drawable/logo_1"
                 android:orientation="horizontal"
                 android:layout_width="50dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 />
         </LinearLayout>
 
@@ -67,8 +66,7 @@
             app:layout_anchorGravity="bottom|right|end"
             app:backgroundTint="@android:color/holo_blue_dark"
             android:src="@drawable/ic_addnote" />
-        </android.support.design.widget.CoordinatorLayout>
 
-
+    </android.support.design.widget.CoordinatorLayout>
 
 </LinearLayout>
