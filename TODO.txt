@@ -1,0 +1,9 @@
+﻿Dans Note :
+- Dialogc box - bouton
+- Return bouton
+- Background Image
+
+List :
+- Remove le titre avec fond bleu
+
+Lancer application avec le logo
