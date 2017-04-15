@@ -50,13 +50,11 @@ public class NotePadList extends AppCompatActivity {
         ListContainer container = new ListContainer();
   //      ((Button) findViewById(R.id.addNote)).setText(String.valueOf(position));
 
-        list.wrapperListNote.noteList.add(container);
+        WrapperListNote.getInstance().wrapperListNote.noteList.add(container);
         int position = list.wrapperListNote.noteList.size() - 1;
 
         Intent intent = new Intent(view.getContext(), NotePadActivity.class);
         intent.putExtra("Position", position);
         startActivity(intent);
-
-        adapter.clear();
     }
 }
