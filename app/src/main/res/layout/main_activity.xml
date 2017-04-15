@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,7 +17,7 @@
             android:layout_width="0dp"
             android:layout_weight="30"
             android:layout_height="match_parent"
-            android:gravity="right">
+            android:gravity="end">
             <ImageView
 
                 android:layout_margin="10dp"
@@ -32,30 +33,42 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="70"
-            android:text="AndPad"
+            android:text="@string/app_name"
             android:textSize="30sp"
             android:textStyle="bold"
             android:gravity="center_vertical"
             android:paddingLeft="20dp"
+            android:paddingRight="0dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="0dp"
             />
 
     </LinearLayout>
 
-    <ListView
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/main_content"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="85"
-        android:id="@+id/ListViewMain"/>
+        android:layout_height="match_parent">
 
-    <Button
-        android:layout_width="52dp"
-        android:layout_height="28dp"
-        android:id="@+id/addNote"
-        android:background="@mipmap/ic_addnote"
-        android:elevation="4dp"
-        android:gravity="left|center_vertical|center_horizontal"
-        android:layout_weight="15.01"
-        android:layout_gravity="right"
-        android:onClick="addNote"/>
+        <ListView
+            android:id="@+id/ListViewMain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            app:layout_anchor="@+id/ListViewMain"
+            android:onClick="addNote"
+            app:layout_anchorGravity="bottom|right|end"
+            app:backgroundTint="@android:color/holo_blue_dark"
+            android:src="@drawable/ic_addnote" />
+        </android.support.design.widget.CoordinatorLayout>
+
+
 
 </LinearLayout>
