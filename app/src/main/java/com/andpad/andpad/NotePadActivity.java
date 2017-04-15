@@ -90,7 +90,7 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
         ColorDrawable viewColor = (ColorDrawable) ll.getBackground();
         container.Color = viewColor.getColor();
 
-        listNote.noteList.remove(position);
+        //listNote.noteList.remove(position);
         listNote.noteList.add(0, container);
 
         WrapperListNote.getInstance().writeFile(getApplicationContext());
