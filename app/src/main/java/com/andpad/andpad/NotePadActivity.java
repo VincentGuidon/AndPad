@@ -14,6 +14,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
@@ -34,7 +37,7 @@ import java.util.Date;
  * Created by Vincent on 26/03/2017.
  */
 
-public class NotePadActivity extends Activity implements ColorPickerDialog.OnColorChangedListener{
+public class NotePadActivity extends AppCompatActivity implements ColorPickerDialog.OnColorChangedListener{
 
     private static final int SELECT_PICTURE = 42;
     private PojoListNote    listNote;
@@ -45,8 +48,6 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
     private int             textColor;
     private EditText        textViewTitle;
     private EditText        textViewContent;
-    private TextView        textView1;
-    private TextView        textView2;
     private LinearLayout    ll;
     private ImageView       iv;
 
@@ -80,8 +81,6 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
 
         textViewTitle = (EditText) findViewById(R.id.TextViewTitle);
         textViewContent = ((EditText) findViewById(R.id.TextViewContent));
-        textView1 = (TextView) findViewById(R.id.TextView1);
-        textView2 = (TextView) findViewById(R.id.TextView2);
         iv = ((ImageView) findViewById(R.id.truc));
         ll = (LinearLayout) findViewById(R.id.allActivityNotePad);
 
@@ -89,14 +88,16 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
         textViewContent.setText(Content);
         textViewTitle.setTextColor(textColor);
         textViewContent.setTextColor(textColor);
-        textView1.setTextColor(textColor);
-        textView2.setTextColor(textColor);
-        if (filePath != null && filePath != "")
+        if (filePath != null && filePath.equals(""))
             iv.setImageURI(Uri.fromFile(new File(filePath)));
 //        setFilePathAsBackground(ll, filePath);
         Toast.makeText(getApplicationContext(), filePath, Toast.LENGTH_SHORT).show();
+    }
 
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
     }
 
     @Override
@@ -119,18 +120,16 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
 
         textViewContent.setTextColor(color);
         textViewTitle.setTextColor(color);
-        textView1.setTextColor(color);
-        textView2.setTextColor(color);
     }
 
-    public void changeColor(View view) {
+    public void changeColor() {
         ColorDrawable viewColor = (ColorDrawable) ll.getBackground();
         int colorId = viewColor.getColor();
 
         new ColorPickerDialog(NotePadActivity.this, NotePadActivity.this, colorId).show();
     }
 
-    public void saveNote(View view) {
+    public void saveNote() {
 
         Date date = new Date();
         String dateStr = new SimpleDateFormat("yyyy/MM/dd").format(date);
@@ -158,7 +157,7 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
     }
 
 
-    public void changeBackground(View view)
+    public void changeBackground()
     {
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -170,7 +169,7 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
         }
     }
 
-    public void deleteNote(View view)
+    public void deleteNote()
     {
         listNote.noteList.remove(position);
         WrapperListNote.getInstance().writeFile(getApplicationContext());
@@ -198,5 +197,28 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
         startActivity(Intent.createChooser(sharingIntent, "Share via"));
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_save:
+                saveNote();
+                break;
+            case R.id.action_delete:
+                deleteNote();
+                break;
+            case R.id.action_change_bg_color:
+                changeColor();
+                break;
+            case R.id.action_change_bg_image:
+                changeBackground();
+                break;
+            case R.id.action_share:
+                shareIt();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

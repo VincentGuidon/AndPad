@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:textColor="@color/colorMainWhite"
     >
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_save"
         android:orderInCategory="1"
         android:title="@string/save_option"
-        android:showAsAction="always"
+        android:icon="@drawable/ic_save"
+        android:showAsAction="ifRoom"
         android:visible="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorMainWhite"/>
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_share"
         android:orderInCategory="4"
         android:title="@string/share_option"
         android:showAsAction="never"
@@ -25,7 +27,7 @@
         android:layout_height="wrap_content" />
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_delete"
         android:orderInCategory="3"
         android:title="@string/delete_option"
         android:showAsAction="never"
@@ -34,9 +36,18 @@
         android:layout_height="wrap_content" />
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_change_bg_color"
         android:orderInCategory="3"
         android:title="@string/select_bg_color"
+        android:showAsAction="never"
+        android:visible="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <item
+        android:id="@+id/action_change_bg_image"
+        android:orderInCategory="3"
+        android:title="@string/select_bg_image"
         android:showAsAction="never"
         android:visible="true"
         android:layout_width="wrap_content"
