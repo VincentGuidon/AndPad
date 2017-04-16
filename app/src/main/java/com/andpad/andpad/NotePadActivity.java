@@ -1,18 +1,11 @@
 package com.andpad.andpad;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -22,12 +15,9 @@ import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.andpad.json.PojoListNote;
-
-import org.w3c.dom.Text;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -46,18 +36,23 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
     private String          Content;
     private String          Date;
     private int             textColor;
+
     private EditText        textViewTitle;
     private EditText        textViewContent;
     private LinearLayout    ll;
-    private ImageView       iv;
-
-    private String          filePath;
-    private Uri             uri;
+    private ImageView       imageBackground;
+    private Uri             imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        Thread thread;
+
+        thread = new Thread();
+
+        thread.start();
 
         Intent intent = getIntent();
 
@@ -75,23 +70,12 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
         Content = listNote.noteList.get(position).Content;
         Date = listNote.noteList.get(position).Date;
         textColor = listNote.noteList.get(position).Color;
-        filePath = listNote.noteList.get(position).Filepath;
+        imageUri = listNote.noteList.get(position).ImageUri;
 
         setContentView(R.layout.notepad_activity);
 
-        textViewTitle = (EditText) findViewById(R.id.TextViewTitle);
-        textViewContent = ((EditText) findViewById(R.id.TextViewContent));
-        iv = ((ImageView) findViewById(R.id.truc));
-        ll = (LinearLayout) findViewById(R.id.allActivityNotePad);
-
-        textViewTitle.setText(Title);
-        textViewContent.setText(Content);
-        textViewTitle.setTextColor(textColor);
-        textViewContent.setTextColor(textColor);
-        if (filePath != null && filePath.equals(""))
-            iv.setImageURI(Uri.fromFile(new File(filePath)));
-//        setFilePathAsBackground(ll, filePath);
-        Toast.makeText(getApplicationContext(), filePath, Toast.LENGTH_SHORT).show();
+        Initiate();
+        SetText();
     }
 
     @Override
@@ -108,9 +92,8 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
         if (requestCode == SELECT_PICTURE)
         {
             if(resultCode == RESULT_OK){
-                uri = imageReturnedIntent.getData();
-                filePath = uri.getPath();
-                setFilePathAsBackground(ll, filePath);
+                imageUri = imageReturnedIntent.getData();
+                setFilePathAsBackground();
             }
         }
     }
@@ -139,7 +122,7 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
         container.Date = dateStr;
         container.Content = textViewContent.getText().toString();
         container.Color = textViewContent.getCurrentTextColor();
-        container.Filepath = filePath;
+        container.ImageUri = imageUri;
 
         listNote.noteList.remove(position);
         listNote.noteList.add(0, container);
@@ -148,11 +131,28 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
         Toast.makeText(getApplicationContext(), "Note saved", Toast.LENGTH_SHORT).show();
     }
 
-    private void setFilePathAsBackground(LinearLayout linearLayout, String path)
+    private void Initiate()
     {
-        if (path != null &&
-                path != "") {
-            ((ImageView) findViewById(R.id.truc)).setImageURI(uri);
+        textViewTitle = (EditText) findViewById(R.id.TextViewTitle);
+        textViewContent = ((EditText) findViewById(R.id.TextViewContent));
+        imageBackground = ((ImageView) findViewById(R.id.imageBackground));
+        ll = (LinearLayout) findViewById(R.id.allActivityNotePad);
+
+    }
+
+    private void SetText()
+    {
+        textViewTitle.setText(Title);
+        textViewContent.setText(Content);
+        textViewTitle.setTextColor(textColor);
+        textViewContent.setTextColor(textColor);
+        setFilePathAsBackground();
+    }
+
+    private void setFilePathAsBackground()
+    {
+        if (imageUri != null) {
+            imageBackground.setImageURI(imageUri);
         }
     }
 
