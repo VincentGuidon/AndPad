@@ -16,12 +16,14 @@
         android:textSize="20dp"
         android:gravity="center"
         android:id="@+id/TextViewTitle"/>
+
     <ScrollView
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="70">
+        android:layout_weight="60">
+
         <EditText
             android:background="#07070707"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida gravida massa, non placerat risus molestie sed. Donec nec metus sapien. In pretium nulla justo, id varius dui efficitur ac. Vestibulum semper justo eget lectus mollis, quis maximus ipsum consequat. Suspendisse in justo ex. Duis porta sapien arcu. Quisque suscipit tempus arcu a posuere. Sed eget mi ut nisl tincidunt ullamcorper id sed dolor. Fusce id hendrerit justo. Aliquam convallis lectus lectus, a vehicula augue pharetra eu. Vestibulum ligula nunc, laoreet nec orci sit amet, egestas sagittis eros.
@@ -35,6 +37,7 @@ Sed rutrum nunc sed augue tincidunt, id eleifend quam elementum. Fusce aliquet f
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </ScrollView>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -44,17 +47,15 @@ Sed rutrum nunc sed augue tincidunt, id eleifend quam elementum. Fusce aliquet f
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10"
-        android:orientation="horizontal"
-        android:weightSum="2">
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.74"
-            android:gravity="center" >
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" >
             <Button
                 android:id="@+id/ButtonSave"
-                android:text="SAVE"
+                android:text="Save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="saveNote"/>
@@ -62,48 +63,63 @@ Sed rutrum nunc sed augue tincidunt, id eleifend quam elementum. Fusce aliquet f
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.64"
-            android:gravity="center_vertical">
-
-            <Button
-                android:id="@+id/ButtonColorPicker"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Color"
-                android:onClick="changeColor"
-                android:minHeight="189dp"
-                android:minWidth="157dp" />
-        </LinearLayout>
-
-        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical">
+            android:layout_height="match_parent">
 
             <Button
-                android:layout_width="96dp"
-                android:layout_height="wrap_content"
-                android:text="DeleteNote"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="delete"
                 android:onClick="deleteNote"
                 android:id="@+id/Delete" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
             <Button
                 android:text="Share"
                 android:id="@+id/shareButton"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:onClick="shareFile"/>
         </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/ButtonColorPicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="color"
+                    android:onClick="changeColor"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:text="background"
+                    android:id="@+id/changeBackground"
+                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:onClick="changeBackground"/>
+            </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

@@ -2,15 +2,20 @@ package com.andpad.andpad;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.andpad.json.JsonHandle;
 import com.andpad.json.PojoListNote;
 
 import java.text.SimpleDateFormat;
@@ -22,6 +27,7 @@ import java.util.Date;
 
 public class NotePadActivity extends Activity implements ColorPickerDialog.OnColorChangedListener{
 
+    private static final int SELECT_PICTURE = 42;
     private PojoListNote    listNote;
     private int             position;
     private String          Title;
@@ -31,6 +37,8 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
     private EditText        textViewTitle;
     private EditText        textViewContent;
     private LinearLayout    ll;
+
+    private String          filePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,22 +61,47 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
         Content = listNote.noteList.get(position).Content;
         Date = listNote.noteList.get(position).Date;
         backgroundColor = listNote.noteList.get(position).Color;
+        filePath = listNote.noteList.get(position).Filepath;
 
         setContentView(R.layout.notepad_activity);
-
 
         textViewTitle = (EditText) findViewById(R.id.TextViewTitle);
         textViewContent = ((EditText) findViewById(R.id.TextViewContent));
         ll = (LinearLayout) findViewById(R.id.allActivityNotePad);
         textViewTitle.setText(Title);
         textViewContent.setText(Content);
-        colorChanged(backgroundColor);
+        setFilePathAsBackground(ll, filePath);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    Intent imageReturnedIntent) {
+        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+
+        if (requestCode == SELECT_PICTURE)
+        {
+            if(resultCode == RESULT_OK){
+                Uri selectedImage = imageReturnedIntent.getData();
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
+
+                Cursor cursor = getContentResolver().query(
+                        selectedImage, filePathColumn, null, null, null);
+                cursor.moveToFirst();
+
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                filePath = cursor.getString(columnIndex);
+                cursor.close();
+
+                setFilePathAsBackground(ll, filePath);
+
+            }
+        }
     }
 
     @Override
     public void colorChanged(int color) {
-        LinearLayout ll = (LinearLayout) findViewById(R.id.allActivityNotePad);
-        ll.setBackgroundColor(color);
+        textViewContent = ((EditText) findViewById(R.id.TextViewContent));
+        textViewContent.setTextColor(color);
     }
 
     public void changeColor(View view) {
@@ -89,12 +122,29 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
         container.Content = textViewContent.getText().toString();
         ColorDrawable viewColor = (ColorDrawable) ll.getBackground();
         container.Color = viewColor.getColor();
+        container.Filepath = filePath;
 
         listNote.noteList.remove(position);
         listNote.noteList.add(0, container);
 
         WrapperListNote.getInstance().writeFile(getApplicationContext());
         Toast.makeText(getApplicationContext(), "Note saved", Toast.LENGTH_SHORT).show();
+    }
+
+    private void setFilePathAsBackground(LinearLayout linearLayout, String path)
+    {
+        Bitmap bitmap = BitmapFactory.decodeFile(path);
+        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), bitmap);
+
+        linearLayout.setBackground(bitmapDrawable);
+    }
+
+
+    public void changeBackground(View view)
+    {
+        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+        photoPickerIntent.setType("image/*");
+        startActivityForResult(photoPickerIntent, SELECT_PICTURE);
     }
 
     public void deleteNote(View view)
