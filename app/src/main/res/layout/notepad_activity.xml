@@ -6,6 +6,7 @@
     android:weightSum="100"
     android:id="@+id/allActivityNotePad"
     android:background="@color/colorMainWhite">
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="0dp"

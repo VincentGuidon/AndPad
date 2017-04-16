@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="100"
     android:background="@color/colorMainWhite">
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -28,7 +30,7 @@
         </LinearLayout>
 
         <TextView
-            android:backgroundTint="@color/colorMainWhite"
+            android:background="@color/colorMainWhite"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="70"
@@ -54,7 +56,7 @@
         <ListView
             android:id="@+id/ListViewMain"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="496dp" />
 
         <android.support.design.widget.FloatingActionButton
             android:layout_width="64dp"
@@ -63,7 +65,7 @@
             android:layout_margin="16dp"
             app:layout_anchor="@+id/ListViewMain"
             android:onClick="addNote"
-            app:layout_anchorGravity="bottom|right|end"
+            app:layout_anchorGravity="bottom|right"
             app:backgroundTint="@android:color/holo_blue_dark"
             android:src="@drawable/ic_addnote" />
 
