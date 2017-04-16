@@ -15,7 +15,7 @@ public class ListContainer {
     public String   Content;
     public String   Date;
     public int      Color;
-    public Uri      ImageUri;
+    public String   ImagePath;
 
     public ListContainer() {
         Title = "Title";

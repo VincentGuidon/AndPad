@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 import com.andpad.json.PojoListNote;
 
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -41,7 +40,7 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
     private EditText        textViewContent;
     private LinearLayout    ll;
     private ImageView       imageBackground;
-    private Uri             imageUri;
+    private String          imagePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +69,7 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
         Content = listNote.noteList.get(position).Content;
         Date = listNote.noteList.get(position).Date;
         textColor = listNote.noteList.get(position).Color;
-        imageUri = listNote.noteList.get(position).ImageUri;
+        imagePath = listNote.noteList.get(position).ImagePath;
 
         setContentView(R.layout.notepad_activity);
 
@@ -92,7 +91,7 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
         if (requestCode == SELECT_PICTURE)
         {
             if(resultCode == RESULT_OK){
-                imageUri = imageReturnedIntent.getData();
+                imagePath = imageReturnedIntent.getDataString();
                 setFilePathAsBackground();
             }
         }
@@ -122,7 +121,7 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
         container.Date = dateStr;
         container.Content = textViewContent.getText().toString();
         container.Color = textViewContent.getCurrentTextColor();
-        container.ImageUri = imageUri;
+        container.ImagePath = imagePath;
 
         listNote.noteList.remove(position);
         listNote.noteList.add(0, container);
@@ -151,8 +150,8 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
 
     private void setFilePathAsBackground()
     {
-        if (imageUri != null) {
-            imageBackground.setImageURI(imageUri);
+        if (imagePath != null) {
+            imageBackground.setImageURI(Uri.parse(imagePath));
         }
     }
 
