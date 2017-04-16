@@ -56,7 +56,5 @@ public class NotePadList extends AppCompatActivity {
         Intent intent = new Intent(view.getContext(), NotePadActivity.class);
         intent.putExtra("Position", position);
         startActivity(intent);
-
-        adapter.clear();
     }
 }

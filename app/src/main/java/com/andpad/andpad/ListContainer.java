@@ -1,5 +1,6 @@
 package com.andpad.andpad;
 
+import android.net.Uri;
 import android.support.annotation.DrawableRes;
 
 import java.text.SimpleDateFormat;
@@ -14,6 +15,7 @@ public class ListContainer {
     public String   Content;
     public String   Date;
     public int      Color;
+    public String   Filepath;
 
     public ListContainer() {
         Title = "Title";
@@ -21,5 +23,6 @@ public class ListContainer {
         java.util.Date date = new Date();
         Date = new SimpleDateFormat("yyyy/MM/dd").format(date);
         Color = R.color.colorMainWhite;
+        Filepath = null;
     }
 }
