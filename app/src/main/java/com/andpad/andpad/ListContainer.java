@@ -18,7 +18,7 @@ public class ListContainer {
     public String   Date;
     public int      Color;
 
-    public Uri      ImageUri;
+    public String   ImagePath;
 
     public ListContainer() {
         Title = "Title";
@@ -26,7 +26,6 @@ public class ListContainer {
         java.util.Date date = new Date();
         Date = new SimpleDateFormat("yyyy/MM/dd").format(date);
         Color = R.color.colorMainWhite;
-
-        ImageUri = Uri.EMPTY;
+        ImagePath = null;
     }
 }
