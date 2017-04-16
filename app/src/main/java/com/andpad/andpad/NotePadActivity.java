@@ -26,6 +26,7 @@ import com.andpad.json.PojoListNote;
 
 import org.w3c.dom.Text;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -47,6 +48,7 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
     private TextView        textView1;
     private TextView        textView2;
     private LinearLayout    ll;
+    private ImageView       iv;
 
     private String          filePath;
     private Uri             uri;
@@ -78,19 +80,23 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
 
         textViewTitle = (EditText) findViewById(R.id.TextViewTitle);
         textViewContent = ((EditText) findViewById(R.id.TextViewContent));
-
         textView1 = (TextView) findViewById(R.id.TextView1);
         textView2 = (TextView) findViewById(R.id.TextView2);
-
+        iv = ((ImageView) findViewById(R.id.truc));
         ll = (LinearLayout) findViewById(R.id.allActivityNotePad);
+
         textViewTitle.setText(Title);
         textViewContent.setText(Content);
         textViewTitle.setTextColor(textColor);
         textViewContent.setTextColor(textColor);
         textView1.setTextColor(textColor);
         textView2.setTextColor(textColor);
+        if (filePath != null && filePath != "")
+            iv.setImageURI(Uri.fromFile(new File(filePath)));
+//        setFilePathAsBackground(ll, filePath);
+        Toast.makeText(getApplicationContext(), filePath, Toast.LENGTH_SHORT).show();
 
-        setFilePathAsBackground(ll, filePath);
+
     }
 
     @Override
@@ -101,29 +107,16 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
         if (requestCode == SELECT_PICTURE)
         {
             if(resultCode == RESULT_OK){
-                Uri selectedImage = imageReturnedIntent.getData();
-
-              /*  String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-                Cursor cursor = getContentResolver().query(
-                        selectedImage, filePathColumn, null, null, null);
-                cursor.moveToFirst();
-
-                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                filePath = cursor.getString(columnIndex);
-                cursor.close();*/
-                uri = selectedImage;
-                setFilePathAsBackground(ll, selectedImage.getPath());
-                Toast.makeText(getApplicationContext(), filePath, Toast.LENGTH_SHORT).show();
+                uri = imageReturnedIntent.getData();
+                filePath = uri.getPath();
+                setFilePathAsBackground(ll, filePath);
             }
         }
     }
 
     @Override
     public void colorChanged(int color) {
-        textViewContent = ((EditText) findViewById(R.id.TextViewContent));
-        textView1 = (TextView) findViewById(R.id.TextView1);
-        textView2 = (TextView) findViewById(R.id.TextView2);
+
         textViewContent.setTextColor(color);
         textViewTitle.setTextColor(color);
         textView1.setTextColor(color);
@@ -147,7 +140,7 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
         container.Date = dateStr;
         container.Content = textViewContent.getText().toString();
         container.Color = textViewContent.getCurrentTextColor();
-        container.Filepath = null;
+        container.Filepath = filePath;
 
         listNote.noteList.remove(position);
         listNote.noteList.add(0, container);
@@ -160,12 +153,6 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
     {
         if (path != null &&
                 path != "") {
-            System.out.println(path);
-           /* Bitmap bitmap = BitmapFactory.decodeFile(path);
-            BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), bitmap);
-
-            linearLayout.setBackground(bitmapDrawable);*/
-            //linearLayout.setBackground();
             ((ImageView) findViewById(R.id.truc)).setImageURI(uri);
         }
     }
@@ -212,16 +199,4 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
         startActivity(Intent.createChooser(sharingIntent, "Share via"));
 
     }
-
-/*    public void readNote(View view) {
-        PojoListNote allNotes = JsonHandle.readFile(getApplicationContext());
-        if (allNotes == null)
-        {
-            textViewContent.setText("No note saved!");
-        }
-        else
-        {
-            textViewContent.setText(allNotes.noteList.get(0).Content);
-        }
-    }*/
 }
