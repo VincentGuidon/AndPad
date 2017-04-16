@@ -6,27 +6,26 @@
     android:weightSum="100"
     android:id="@+id/allActivityNotePad"
     android:background="@color/colorMainWhite">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <ImageView
             android:id="@+id/truc"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
         </ImageView>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="TITLE"
+            android:text="@string/default_note_title"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:textStyle="bold"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:gravity="center"
             android:id="@+id/TextViewTitle"/>
 
@@ -51,113 +50,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
         </ScrollView>
-
-
-        <TextView
-            android:id="@+id/TextView1"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/ScrollViewLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="File Manager : "
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
-        <LinearLayout
-            android:id="@+id/LayoutFileManager"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/TextView1"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" >
-                <Button
-                    android:id="@+id/ButtonSave"
-                    android:text="Save"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="saveNote"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="delete"
-                    android:onClick="deleteNote"
-                    android:id="@+id/Delete" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:text="Share"
-                    android:id="@+id/shareButton"
-                    android:layout_height="match_parent"
-                    android:layout_width="wrap_content"
-                    android:onClick="shareFile"/>
-            </LinearLayout>
-
-            </LinearLayout>
-
-
-        <TextView
-            android:id="@+id/TextView2"
-            android:layout_below="@+id/LayoutFileManager"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Fancy stuff : "
-            android:layout_marginTop="10dp"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
-
-        <LinearLayout
-            android:layout_below="@+id/TextView2"
-                android:id="@+id/LayoutFancyManager"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
-
-                    <Button
-                        android:id="@+id/ButtonColorPicker"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="color"
-                        android:onClick="changeColor"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
-
-                    <Button
-                        android:text="background"
-                        android:id="@+id/changeBackground"
-                        android:layout_height="match_parent"
-                        android:layout_width="wrap_content"
-                        android:onClick="changeBackground"/>
-                </LinearLayout>
-
-        </LinearLayout>
-
 
     </RelativeLayout>
 
