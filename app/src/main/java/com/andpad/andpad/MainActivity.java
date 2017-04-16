@@ -19,14 +19,11 @@ public class MainActivity extends AppCompatActivity  {
 
         ImageView wtf = (ImageView)findViewById(R.id.wtf);
 
-        wtf.setOnClickListener(clickEvent());
-    }
-
-    public View.OnClickListener clickEvent()
-    {
-        startActivity(new Intent(this, NotePadList.class));
-        this.finish();
-        
-        return null;
+        wtf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), NotePadList.class));
+            }
+        });
     }
 }
