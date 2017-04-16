@@ -33,13 +33,12 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
     private String          Title;
     private String          Content;
     private String          Date;
-    private int             backgroundColor;
+    private int             textColor;
     private EditText        textViewTitle;
     private EditText        textViewContent;
     private LinearLayout    ll;
 
     private String          filePath;
-    private boolean         isImage = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +60,7 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
         Title = listNote.noteList.get(position).Title;
         Content = listNote.noteList.get(position).Content;
         Date = listNote.noteList.get(position).Date;
-        backgroundColor = listNote.noteList.get(position).Color;
+        textColor = listNote.noteList.get(position).Color;
         filePath = listNote.noteList.get(position).Filepath;
 
         setContentView(R.layout.notepad_activity);
@@ -71,6 +70,9 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
         ll = (LinearLayout) findViewById(R.id.allActivityNotePad);
         textViewTitle.setText(Title);
         textViewContent.setText(Content);
+        textViewTitle.setTextColor(textColor);
+        textViewContent.setTextColor(textColor);
+
         setFilePathAsBackground(ll, filePath);
     }
 
@@ -94,7 +96,6 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
                 cursor.close();
 
                 setFilePathAsBackground(ll, filePath);
-                isImage = true;
             }
         }
     }
@@ -103,6 +104,7 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
     public void colorChanged(int color) {
         textViewContent = ((EditText) findViewById(R.id.TextViewContent));
         textViewContent.setTextColor(color);
+        textViewTitle.setTextColor(color);
     }
 
     public void changeColor(View view) {
@@ -121,17 +123,8 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
         container.Title = textViewTitle.getText().toString();
         container.Date = dateStr;
         container.Content = textViewContent.getText().toString();
-        if (!isImage)
-        {
-            ColorDrawable viewColor = (ColorDrawable) ll.getBackground();
-            container.Color = viewColor.getColor();
-            container.Filepath = null;
-        }
-        else
-        {
-            container.Color = R.color.colorMainWhite;
-            container.Filepath = filePath;
-        }
+        container.Color = textViewContent.getCurrentTextColor();
+        container.Filepath = null;
 
         listNote.noteList.remove(position);
         listNote.noteList.add(0, container);
@@ -142,18 +135,12 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
 
     private void setFilePathAsBackground(LinearLayout linearLayout, String path)
     {
-        if (path != null)
-        {
+        if (path != null &&
+                path != "") {
             Bitmap bitmap = BitmapFactory.decodeFile(path);
             BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), bitmap);
 
             linearLayout.setBackground(bitmapDrawable);
-            isImage = true;
-        }
-        else
-        {
-            ll.setBackgroundColor(backgroundColor);
-            isImage = false;
         }
     }
 
