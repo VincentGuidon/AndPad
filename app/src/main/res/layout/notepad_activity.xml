@@ -17,12 +17,20 @@
         android:gravity="center"
         android:id="@+id/TextViewTitle"/>
 
+    <ImageView
+        android:id="@+id/truc"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="20">
+
+    </ImageView>
+
     <ScrollView
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="60">
+        android:layout_weight="40">
 
         <EditText
             android:background="#07070707"
