@@ -1,18 +1,11 @@
 package com.andpad.andpad;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -22,12 +15,9 @@ import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.andpad.json.PojoListNote;
-
-import org.w3c.dom.Text;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -51,8 +41,8 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
     private LinearLayout    ll;
     private ImageView       iv;
 
-    private String          filePath;
-    private Uri             uri;
+    private Uri imageUri;
+    private Intent imageIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +65,7 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
         Content = listNote.noteList.get(position).Content;
         Date = listNote.noteList.get(position).Date;
         textColor = listNote.noteList.get(position).Color;
-        filePath = listNote.noteList.get(position).Filepath;
+        imageUri = listNote.noteList.get(position).imageUri;
 
         setContentView(R.layout.notepad_activity);
 
@@ -88,10 +78,11 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
         textViewContent.setText(Content);
         textViewTitle.setTextColor(textColor);
         textViewContent.setTextColor(textColor);
-        if (filePath != null && filePath.equals(""))
-            iv.setImageURI(Uri.fromFile(new File(filePath)));
-//        setFilePathAsBackground(ll, filePath);
-        Toast.makeText(getApplicationContext(), filePath, Toast.LENGTH_SHORT).show();
+        setFilePathAsBackground();
+
+        if (imageUri != null)
+            Toast.makeText(getApplicationContext(), imageUri.toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), imageUri.toString(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -108,9 +99,9 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
         if (requestCode == SELECT_PICTURE)
         {
             if(resultCode == RESULT_OK){
-                uri = imageReturnedIntent.getData();
-                filePath = uri.getPath();
-                setFilePathAsBackground(ll, filePath);
+                imageIntent = imageReturnedIntent;
+                imageUri = imageReturnedIntent.getData();
+                setFilePathAsBackground();
             }
         }
     }
@@ -139,7 +130,7 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
         container.Date = dateStr;
         container.Content = textViewContent.getText().toString();
         container.Color = textViewContent.getCurrentTextColor();
-        container.Filepath = filePath;
+        container.imageUri = imageUri;
 
         listNote.noteList.remove(position);
         listNote.noteList.add(0, container);
@@ -148,12 +139,10 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
         Toast.makeText(getApplicationContext(), "Note saved", Toast.LENGTH_SHORT).show();
     }
 
-    private void setFilePathAsBackground(LinearLayout linearLayout, String path)
+    private void setFilePathAsBackground()
     {
-        if (path != null &&
-                path != "") {
-            ((ImageView) findViewById(R.id.truc)).setImageURI(uri);
-        }
+        if (imageIntent != null)
+            iv.setImageURI(imageIntent.getData());
     }
 
 
