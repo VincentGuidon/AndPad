@@ -1,6 +1,14 @@
 package com.andpad.andpad;
 
 import android.Manifest;
+import android.app.ActionBar;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
@@ -8,6 +16,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +27,8 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.andpad.json.PojoListNote;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.Thing;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,9 +37,10 @@ import java.util.Date;
  * Created by Vincent on 26/03/2017.
  */
 
-public class NotePadActivity extends AppCompatActivity implements ColorPickerDialog.OnColorChangedListener{
+public class NotePadActivity extends AppCompatActivity implements ColorPickerDialog.OnColorChangedListener {
 
     private static final int SELECT_PICTURE = 42;
+
     private PojoListNote    listNote;
     private int             position;
     private String          Title;
@@ -60,8 +72,7 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
         position = intent.getIntExtra("Position", 0);
         if (position < 0)
             position = 0;
-        if (listNote.noteList.size() == 0)
-        {
+        if (listNote.noteList.size() == 0) {
             ListContainer container = new ListContainer();
             listNote.noteList.add(container);
             position = 0;
@@ -74,9 +85,15 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
         imagePath = listNote.noteList.get(position).ImagePath;
         setContentView(R.layout.notepad_activity);
 
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        // add the custom view to the action bar
+        actionBar.setCustomView(R.layout.note_title);
+        textViewTitle = (EditText) actionBar.getCustomView().findViewById(R.id.NoteTitle);
+        actionBar.setDisplayOptions(android.support.v7.app.ActionBar.DISPLAY_SHOW_CUSTOM
+                | android.support.v7.app.ActionBar.DISPLAY_SHOW_HOME);
+
         Initiate();
         SetText();
-
     }
 
     @Override
@@ -103,7 +120,6 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
     public void colorChanged(int color) {
 
         textViewContent.setTextColor(color);
-        textViewTitle.setTextColor(color);
     }
 
     public void changeColor() {
@@ -134,53 +150,45 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
 
     private void Initiate()
     {
-        textViewTitle = (EditText) findViewById(R.id.TextViewTitle);
+        textViewTitle = (EditText) findViewById(R.id.NoteTitle);
         textViewContent = ((EditText) findViewById(R.id.TextViewContent));
         imageBackground = ((ImageView) findViewById(R.id.imageBackground));
         ll = (LinearLayout) findViewById(R.id.allActivityNotePad);
-
     }
 
     private void SetText()
     {
         textViewTitle.setText(Title);
         textViewContent.setText(Content);
-        textViewTitle.setTextColor(textColor);
         textViewContent.setTextColor(textColor);
         setFilePathAsBackground();
     }
 
     private void setFilePathAsBackground()
     {
-
         if (imagePath != null) {
             imageBackground.setImageURI(Uri.parse(imagePath));
         }
     }
 
-
-    public void changeBackground()
-    {
+    public void changeBackground() {
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED)
-        {
+                != PackageManager.PERMISSION_GRANTED) {
             Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
             photoPickerIntent.setType("image/*");
             startActivityForResult(photoPickerIntent, SELECT_PICTURE);
         }
     }
 
-    public void deleteNote()
-    {
+    public void deleteNote() {
         listNote.noteList.remove(position);
         WrapperListNote.getInstance().writeFile(getApplicationContext());
         Toast.makeText(getApplicationContext(), "Note deleted", Toast.LENGTH_SHORT).show();
         returnToList();
     }
 
-    public void returnToList()
-    {
+    public void returnToList() {
         Intent intent = new Intent(this, NotePadList.class);
         startActivity(intent);
         this.finish();
@@ -190,27 +198,26 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
         shareIt();
     }
 
-    private void shareIt()
-    {
-        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+    private void shareIt() {
+        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
         String shareBody = Content;
-        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, Title);
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+        sharingIntent.putExtra(Intent.EXTRA_SUBJECT, Title);
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
         startActivity(Intent.createChooser(sharingIntent, "Share via"));
 
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_save:
                 saveNote();
                 break;
             case R.id.action_delete:
                 deleteNote();
                 break;
-            case R.id.action_change_bg_color:
+            case R.id.action_change_font_color:
                 changeColor();
                 break;
             case R.id.action_change_bg_image:
@@ -223,4 +230,21 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
 
         return super.onOptionsItemSelected(item);
     }
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("NotePad Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
+    }
+
 }
