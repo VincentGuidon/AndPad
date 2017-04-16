@@ -14,6 +14,15 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.logo_activity);
 
+        Thread test = new Thread();
+
+        test.start();
+        try {
+            test.wait(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         startActivity(new Intent(this, NotePadList.class));
        this.finish();
     }
