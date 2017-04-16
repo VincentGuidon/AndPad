@@ -36,18 +36,24 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
     private String          Content;
     private String          Date;
     private int             textColor;
+
     private EditText        textViewTitle;
     private EditText        textViewContent;
     private LinearLayout    ll;
-    private ImageView       iv;
 
-    private Uri imageUri;
-    private Intent imageIntent;
+    private ImageView       imageBackground;
+    private Uri             imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        Thread thread;
+
+        thread = new Thread();
+
+        thread.start();
 
         Intent intent = getIntent();
 
@@ -65,24 +71,14 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
         Content = listNote.noteList.get(position).Content;
         Date = listNote.noteList.get(position).Date;
         textColor = listNote.noteList.get(position).Color;
-        imageUri = listNote.noteList.get(position).imageUri;
+
+        imageUri = listNote.noteList.get(position).ImageUri;
 
         setContentView(R.layout.notepad_activity);
 
-        textViewTitle = (EditText) findViewById(R.id.TextViewTitle);
-        textViewContent = ((EditText) findViewById(R.id.TextViewContent));
-        iv = ((ImageView) findViewById(R.id.truc));
-        ll = (LinearLayout) findViewById(R.id.allActivityNotePad);
+        Initiate();
+        SetText();
 
-        textViewTitle.setText(Title);
-        textViewContent.setText(Content);
-        textViewTitle.setTextColor(textColor);
-        textViewContent.setTextColor(textColor);
-        setFilePathAsBackground();
-
-        if (imageUri != null)
-            Toast.makeText(getApplicationContext(), imageUri.toString(), Toast.LENGTH_SHORT).show();
-        //Toast.makeText(getApplicationContext(), imageUri.toString(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -99,7 +95,6 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
         if (requestCode == SELECT_PICTURE)
         {
             if(resultCode == RESULT_OK){
-                imageIntent = imageReturnedIntent;
                 imageUri = imageReturnedIntent.getData();
                 setFilePathAsBackground();
             }
@@ -130,7 +125,8 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
         container.Date = dateStr;
         container.Content = textViewContent.getText().toString();
         container.Color = textViewContent.getCurrentTextColor();
-        container.imageUri = imageUri;
+
+        container.ImageUri = imageUri;
 
         listNote.noteList.remove(position);
         listNote.noteList.add(0, container);
@@ -139,10 +135,29 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
         Toast.makeText(getApplicationContext(), "Note saved", Toast.LENGTH_SHORT).show();
     }
 
+    private void Initiate()
+    {
+        textViewTitle = (EditText) findViewById(R.id.TextViewTitle);
+        textViewContent = ((EditText) findViewById(R.id.TextViewContent));
+        imageBackground = ((ImageView) findViewById(R.id.imageBackground));
+        ll = (LinearLayout) findViewById(R.id.allActivityNotePad);
+
+    }
+
+    private void SetText()
+    {
+        textViewTitle.setText(Title);
+        textViewContent.setText(Content);
+        textViewTitle.setTextColor(textColor);
+        textViewContent.setTextColor(textColor);
+        setFilePathAsBackground();
+    }
+
     private void setFilePathAsBackground()
     {
-        if (imageIntent != null)
-            iv.setImageURI(imageIntent.getData());
+        if (imageUri != null) {
+            imageBackground.setImageURI(imageUri);
+        }
     }
 
 

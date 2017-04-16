@@ -16,8 +16,8 @@ public class ListContainer {
     public String   Content;
     public String   Date;
     public int      Color;
-    public Uri      imageUri;
-    public Intent   imageIntent;
+
+    public Uri      ImageUri;
 
     public ListContainer() {
         Title = "Title";
@@ -25,7 +25,7 @@ public class ListContainer {
         java.util.Date date = new Date();
         Date = new SimpleDateFormat("yyyy/MM/dd").format(date);
         Color = R.color.colorMainWhite;
-        imageUri = null;
-        imageIntent = null;
+        ImageUri = null;
+
     }
 }
