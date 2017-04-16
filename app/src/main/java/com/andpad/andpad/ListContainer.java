@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.DrawableRes;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -25,7 +26,7 @@ public class ListContainer {
         java.util.Date date = new Date();
         Date = new SimpleDateFormat("yyyy/MM/dd").format(date);
         Color = R.color.colorMainWhite;
-        ImageUri = null;
 
+        ImageUri = Uri.EMPTY;
     }
 }

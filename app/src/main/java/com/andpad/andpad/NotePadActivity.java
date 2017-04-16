@@ -155,7 +155,7 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
 
     private void setFilePathAsBackground()
     {
-        if (imageUri != null) {
+        if (imageUri != Uri.EMPTY) {
             imageBackground.setImageURI(imageUri);
         }
     }
