@@ -4,9 +4,8 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="15dp"
-    android:layout_marginRight="15dp"
-    android:paddingRight="3dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
     android:weightSum="100">
     <LinearLayout
         android:id="@+id/InflaterLayout"
@@ -29,7 +28,6 @@
                 android:gravity="center_vertical"
                 android:textSize="18sp"
                 android:paddingRight="3dp"
-                android:paddingLeft="3dp"
                 android:textStyle="normal|bold" />
             <View
                 android:layout_width="1dp"
@@ -41,9 +39,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:text="25/03/2017"
+                android:textAlignment="textEnd"
                 android:gravity="center_vertical"
                 android:textSize="16sp"
-                android:paddingLeft="3dp"
                 android:paddingRight="3dp" />
         </LinearLayout>
         <View
@@ -67,8 +65,7 @@ Duis vitae erat suscipit, viverra ipsum sed, molestie felis. Nam imperdiet mi at
 
 Vivamus elementum tellus et lacinia interdum. Aliquam porta ligula orci, nec aliquam est porta sed. Phasellus dictum euismod tincidunt. Vestibulum nec sapien pellentesque, scelerisque turpis at, gravida tellus. Quisque aliquam leo nibh, ac vestibulum massa bibendum consectetur. Suspendisse rhoncus massa in sapien ultricies tincidunt. Praesent feugiat volutpat eros, in sodales odio efficitur vel.
 
-Sed rutrum nunc sed augue tincidunt, id eleifend quam elementum. Fusce aliquet feugiat mi, eu malesuada enim imperdiet eu. Quisque mollis nisl ut ipsum feugiat dapibus. Quisque tincidunt mollis sapien, eu gravida sapien tristique convallis. Suspendisse id felis congue, iaculis urna non, efficitur dolor. Donec dapibus erat et porttitor finibus. Phasellus eros augue, ornare vitae neque eu, tincidunt varius purus. Fusce euismod, justo ut lacinia dictum, sem tellus convallis odio, nec convallis metus mi vel enim. Mauris semper mi quis arcu lacinia pharetra. Morbi tincidunt auctor ipsum vel rutrum. Etiam et odio sem. Mauris nulla mi, tempus pulvinar varius nec, consequat non nunc."
-                android:padding="3dp" />
+Sed rutrum nunc sed augue tincidunt, id eleifend quam elementum. Fusce aliquet feugiat mi, eu malesuada enim imperdiet eu. Quisque mollis nisl ut ipsum feugiat dapibus. Quisque tincidunt mollis sapien, eu gravida sapien tristique convallis. Suspendisse id felis congue, iaculis urna non, efficitur dolor. Donec dapibus erat et porttitor finibus. Phasellus eros augue, ornare vitae neque eu, tincidunt varius purus. Fusce euismod, justo ut lacinia dictum, sem tellus convallis odio, nec convallis metus mi vel enim. Mauris semper mi quis arcu lacinia pharetra. Morbi tincidunt auctor ipsum vel rutrum. Etiam et odio sem. Mauris nulla mi, tempus pulvinar varius nec, consequat non nunc." />
 
         </LinearLayout>
         <View
