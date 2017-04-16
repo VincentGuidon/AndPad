@@ -6,6 +6,7 @@
     android:gravity="center"
     android:background="@color/colorMainWhite">
     <ImageView
+        android:id="@+id/wtf"
         android:src="@drawable/logo_1"
         android:layout_width="150dp"
         android:layout_height="150dp" />

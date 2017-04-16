@@ -1,9 +1,12 @@
 package com.andpad.andpad;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity  {
 
@@ -14,13 +17,16 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.logo_activity);
 
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        ImageView wtf = (ImageView)findViewById(R.id.wtf);
 
+        wtf.setOnClickListener(clickEvent());
+    }
+
+    public View.OnClickListener clickEvent()
+    {
         startActivity(new Intent(this, NotePadList.class));
-       this.finish();
+        this.finish();
+        
+        return null;
     }
 }
