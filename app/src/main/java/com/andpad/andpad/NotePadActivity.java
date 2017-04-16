@@ -39,6 +39,7 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
     private EditText        textViewTitle;
     private EditText        textViewContent;
     private LinearLayout    ll;
+
     private ImageView       imageBackground;
     private String          imagePath;
 
@@ -69,12 +70,13 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
         Content = listNote.noteList.get(position).Content;
         Date = listNote.noteList.get(position).Date;
         textColor = listNote.noteList.get(position).Color;
-        imagePath = listNote.noteList.get(position).ImagePath;
 
+        imagePath = listNote.noteList.get(position).ImagePath;
         setContentView(R.layout.notepad_activity);
 
         Initiate();
         SetText();
+
     }
 
     @Override
@@ -150,6 +152,7 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
 
     private void setFilePathAsBackground()
     {
+
         if (imagePath != null) {
             imageBackground.setImageURI(Uri.parse(imagePath));
         }
