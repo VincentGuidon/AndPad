@@ -26,6 +26,10 @@ public class NotePadList extends AppCompatActivity {
         list.setUp(getApplicationContext());
         adapter = new ListViewAdapter(this, R.layout.infalter_notepad, list.wrapperListNote.noteList);
 
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        // add the custom view to the action bar
+        actionBar.setCustomView(R.layout.list_title);
+        actionBar.setDisplayOptions(android.support.v7.app.ActionBar.DISPLAY_SHOW_CUSTOM);
     }
 
     @Override
