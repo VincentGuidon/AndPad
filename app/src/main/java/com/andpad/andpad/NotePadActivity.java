@@ -85,6 +85,8 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
         {
             if(resultCode == RESULT_OK){
                 Uri selectedImage = imageReturnedIntent.getData();
+
+
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
                 Cursor cursor = getContentResolver().query(
