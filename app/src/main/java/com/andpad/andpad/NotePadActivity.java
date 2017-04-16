@@ -39,6 +39,7 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
     private LinearLayout    ll;
 
     private String          filePath;
+    private boolean         isImage = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +94,7 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
                 cursor.close();
 
                 setFilePathAsBackground(ll, filePath);
-
+                isImage = true;
             }
         }
     }
@@ -120,11 +121,19 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
         container.Title = textViewTitle.getText().toString();
         container.Date = dateStr;
         container.Content = textViewContent.getText().toString();
-        ColorDrawable viewColor = (ColorDrawable) ll.getBackground();
-        container.Color = viewColor.getColor();
-        container.Filepath = filePath;
+        if (!isImage)
+        {
+            ColorDrawable viewColor = (ColorDrawable) ll.getBackground();
+            container.Color = viewColor.getColor();
+            container.Filepath = null;
+        }
+        else
+        {
+            container.Color = R.color.colorMainWhite;
+            container.Filepath = filePath;
+        }
 
-        //listNote.noteList.remove(position);
+        listNote.noteList.remove(position);
         listNote.noteList.add(0, container);
 
         WrapperListNote.getInstance().writeFile(getApplicationContext());
@@ -133,10 +142,19 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
 
     private void setFilePathAsBackground(LinearLayout linearLayout, String path)
     {
-        Bitmap bitmap = BitmapFactory.decodeFile(path);
-        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), bitmap);
+        if (path != null)
+        {
+            Bitmap bitmap = BitmapFactory.decodeFile(path);
+            BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), bitmap);
 
-        linearLayout.setBackground(bitmapDrawable);
+            linearLayout.setBackground(bitmapDrawable);
+            isImage = true;
+        }
+        else
+        {
+            ll.setBackgroundColor(backgroundColor);
+            isImage = false;
+        }
     }
 
 
