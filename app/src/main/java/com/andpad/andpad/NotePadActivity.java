@@ -85,13 +85,6 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
         imagePath = listNote.noteList.get(position).ImagePath;
         setContentView(R.layout.notepad_activity);
 
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        // add the custom view to the action bar
-        actionBar.setCustomView(R.layout.note_title);
-        textViewTitle = (EditText) actionBar.getCustomView().findViewById(R.id.NoteTitle);
-        actionBar.setDisplayOptions(android.support.v7.app.ActionBar.DISPLAY_SHOW_CUSTOM
-                | android.support.v7.app.ActionBar.DISPLAY_SHOW_HOME);
-
         Initiate();
         SetText();
     }
@@ -154,6 +147,14 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
         textViewContent = ((EditText) findViewById(R.id.TextViewContent));
         imageBackground = ((ImageView) findViewById(R.id.imageBackground));
         ll = (LinearLayout) findViewById(R.id.allActivityNotePad);
+
+        /* Initiate Action bar */
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        // add the custom view to the action bar
+        actionBar.setCustomView(R.layout.note_title);
+        textViewTitle = (EditText) actionBar.getCustomView().findViewById(R.id.NoteTitle);
+        actionBar.setDisplayOptions(android.support.v7.app.ActionBar.DISPLAY_SHOW_CUSTOM
+                | android.support.v7.app.ActionBar.DISPLAY_SHOW_HOME);
     }
 
     private void SetText()
