@@ -18,7 +18,8 @@
             android:layout_height="0dp"
             android:layout_weight="40"
             android:orientation="horizontal"
-            android:weightSum="10">
+            android:weightSum="10"
+            >
             <TextView
                 android:id="@+id/ListTextTitle"
                 android:layout_width="0dp"
@@ -29,10 +30,6 @@
                 android:textSize="18sp"
                 android:paddingRight="3dp"
                 android:textStyle="normal|bold" />
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="#e7e7e7"/>
             <TextView
                 android:id="@+id/ListTextDate"
                 android:layout_width="0dp"
@@ -44,10 +41,6 @@
                 android:textSize="16sp"
                 android:paddingRight="3dp" />
         </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#e7e7e7"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -68,13 +61,6 @@ Vivamus elementum tellus et lacinia interdum. Aliquam porta ligula orci, nec ali
 Sed rutrum nunc sed augue tincidunt, id eleifend quam elementum. Fusce aliquet feugiat mi, eu malesuada enim imperdiet eu. Quisque mollis nisl ut ipsum feugiat dapibus. Quisque tincidunt mollis sapien, eu gravida sapien tristique convallis. Suspendisse id felis congue, iaculis urna non, efficitur dolor. Donec dapibus erat et porttitor finibus. Phasellus eros augue, ornare vitae neque eu, tincidunt varius purus. Fusce euismod, justo ut lacinia dictum, sem tellus convallis odio, nec convallis metus mi vel enim. Mauris semper mi quis arcu lacinia pharetra. Morbi tincidunt auctor ipsum vel rutrum. Etiam et odio sem. Mauris nulla mi, tempus pulvinar varius nec, consequat non nunc." />
 
         </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#e7e7e7"/>
-
-
     </LinearLayout>
-
 
 </LinearLayout>
