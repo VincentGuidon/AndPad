@@ -4,17 +4,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:textColor="@color/colorMainWhite">
-    
+
+    <!--<item
+        android:id="@+id/action_return"
+        android:orderInCategory="1"
+        android:title="@string/save_option"
+        android:icon="@mipmap/ic_return"
+        AndPad:showAsAction="always"
+        android:visible="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorMainWhite" /-->
+
     <item
         android:id="@+id/action_save"
         android:orderInCategory="1"
         android:title="@string/save_option"
         android:icon="@drawable/ic_save"
-        AndPad:showAsAction="ifRoom"
+        AndPad:showAsAction="always"
         android:visible="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorMainWhite"/>
+        android:textColor="@color/colorMainWhite" />
 
     <item
         android:id="@+id/action_share"
@@ -35,9 +46,9 @@
         android:layout_height="wrap_content" />
 
     <item
-        android:id="@+id/action_change_bg_color"
+        android:id="@+id/action_change_font_color"
         android:orderInCategory="3"
-        android:title="@string/select_bg_color"
+        android:title="@string/select_font_color"
         AndPad:showAsAction="never"
         android:visible="true"
         android:layout_width="wrap_content"

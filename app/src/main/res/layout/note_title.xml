@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<EditText xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/NoteTitleEditStyle"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_gravity="center"
+    android:text="@string/default_note_title"
+    android:gravity="center"
+    android:id="@+id/NoteTitle"
+    android:inputType="text">
+    <requestFocus />
+</EditText>

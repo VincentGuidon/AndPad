@@ -17,28 +17,16 @@
             android:layout_height="match_parent">
         </ImageView>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/default_note_title"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:id="@+id/TextViewTitle"/>
-
         <ScrollView
             android:id="@+id/ScrollViewLayout"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_width="match_parent"
-            android:layout_height="280dp"
-            android:layout_below="@+id/TextViewTitle">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="25dp">
 
             <EditText
-                android:background="#07070707"
                 android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida gravida massa, non placerat risus molestie sed. Donec nec metus sapien. In pretium nulla justo, id varius dui efficitur ac. Vestibulum semper justo eget lectus mollis, quis maximus ipsum consequat. Suspendisse in justo ex. Duis porta sapien arcu. Quisque suscipit tempus arcu a posuere. Sed eget mi ut nisl tincidunt ullamcorper id sed dolor. Fusce id hendrerit justo. Aliquam convallis lectus lectus, a vehicula augue pharetra eu. Vestibulum ligula nunc, laoreet nec orci sit amet, egestas sagittis eros.
 
     Duis vitae erat suscipit, viverra ipsum sed, molestie felis. Nam imperdiet mi at turpis maximus aliquet. Maecenas suscipit sagittis augue, et faucibus nisi porta quis. Nunc vitae consequat ante, vel condimentum arcu. Nulla sit amet faucibus justo, id ultricies nunc. Proin pretium nibh nec massa ornare, eget tincidunt risus luctus. In congue, nunc ac euismod vulputate, libero velit pretium purus, ultrices convallis risus quam ut quam. Ut in consectetur ligula.
@@ -48,7 +36,7 @@
     Sed rutrum nunc sed augue tincidunt, id eleifend quam elementum. Fusce aliquet feugiat mi, eu malesuada enim imperdiet eu. Quisque mollis nisl ut ipsum feugiat dapibus. Quisque tincidunt mollis sapien, eu gravida sapien tristique convallis. Suspendisse id felis congue, iaculis urna non, efficitur dolor. Donec dapibus erat et porttitor finibus. Phasellus eros augue, ornare vitae neque eu, tincidunt varius purus. Fusce euismod, justo ut lacinia dictum, sem tellus convallis odio, nec convallis metus mi vel enim. Mauris semper mi quis arcu lacinia pharetra. Morbi tincidunt auctor ipsum vel rutrum. Etiam et odio sem. Mauris nulla mi, tempus pulvinar varius nec, consequat non nunc."
                 android:id="@+id/TextViewContent"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="wrap_content"/>
         </ScrollView>
 
     </RelativeLayout>
