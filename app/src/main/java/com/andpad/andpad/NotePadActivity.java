@@ -124,7 +124,7 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
         container.Color = viewColor.getColor();
         container.Filepath = filePath;
 
-        listNote.noteList.remove(position);
+        //listNote.noteList.remove(position);
         listNote.noteList.add(0, container);
 
         WrapperListNote.getInstance().writeFile(getApplicationContext());
