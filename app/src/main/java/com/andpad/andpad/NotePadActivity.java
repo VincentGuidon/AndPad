@@ -143,7 +143,6 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
 
     private void Initiate()
     {
-        textViewTitle = (EditText) findViewById(R.id.NoteTitle);
         textViewContent = ((EditText) findViewById(R.id.TextViewContent));
         imageBackground = ((ImageView) findViewById(R.id.imageBackground));
         ll = (LinearLayout) findViewById(R.id.allActivityNotePad);
@@ -155,6 +154,7 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
         textViewTitle = (EditText) actionBar.getCustomView().findViewById(R.id.NoteTitle);
         actionBar.setDisplayOptions(android.support.v7.app.ActionBar.DISPLAY_SHOW_CUSTOM
                 | android.support.v7.app.ActionBar.DISPLAY_SHOW_HOME);
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     private void SetText()
@@ -190,8 +190,6 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
     }
 
     public void returnToList() {
-        Intent intent = new Intent(this, NotePadList.class);
-        startActivity(intent);
         this.finish();
     }
 
@@ -226,6 +224,9 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
                 break;
             case R.id.action_share:
                 shareIt();
+                break;
+            case android.R.id.home:
+                returnToList();
                 break;
         }
 
