@@ -149,11 +149,13 @@ public class NotePadActivity extends Activity implements ColorPickerDialog.OnCol
 
             linearLayout.setBackground(bitmapDrawable);
             isImage = true;
+            backgroundColor = R.color.colorMainWhite;
         }
         else
         {
             ll.setBackgroundColor(backgroundColor);
             isImage = false;
+            filePath = null;
         }
     }
 
