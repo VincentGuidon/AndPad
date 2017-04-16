@@ -5,7 +5,6 @@
     android:layout_height="50dp"
     android:layout_gravity="center"
     android:text="@string/default_note_title"
-    android:gravity="center"
     android:id="@+id/NoteTitle"
     android:inputType="text">
     <requestFocus />
