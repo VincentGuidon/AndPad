@@ -211,7 +211,11 @@ public class NotePadActivity extends AppCompatActivity implements ColorPickerDia
         textViewTitle.setText(Title);
         textViewContent.setText(Content);
         textViewContent.setTextColor(textColor);
-        setFilePathAsBackground();
+        if (imagePath != null &&
+                imagePath != "")
+        {
+            loadImageFromStorage(imagePath, imageBackground);
+        }
     }
 
     private void setFilePathAsBackground()
